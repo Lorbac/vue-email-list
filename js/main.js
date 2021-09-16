@@ -11,18 +11,25 @@ var app = new Vue ({
     data:{
         currentEmail: "",
         emailContainer: [],
+        howManyMail: 10,
     },
     methods: {},
-    mounted() {
-        let howManyMail = 10
-        for (i = 0 ; i < howManyMail ; i++) {
-            axios
-                .get("https://flynn.boolean.careers/exercises/api/random/mail")
-                .then((result) => {
-                    this.currentEmail = result.data.response;
-                    this.emailContainer.push(result.data.response);  
-                });
-                console.log(this.emailContainer)
+    computed: {
+        arrayFilled: function() {
+            if (this.emailContainer.length == this.howManyMail) {
+                return this.emailContainer;
+            }
         }
-    }   
+    },
+    mounted() {
+        
+        for (i = 0 ; i < this.howManyMail ; i++) {
+            axios
+            .get("https://flynn.boolean.careers/exercises/api/random/mail")
+            .then((result) => {
+                this.currentEmail = result.data.response;
+                this.emailContainer.push(this.currentEmail);
+            });
+        }
+    },
 })
