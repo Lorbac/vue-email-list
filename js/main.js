@@ -12,11 +12,17 @@ var app = new Vue ({
         currentEmail: "",
         emailContainer: [],
     },
+    methods: {},
     mounted() {
-        axios
-            .get("https://flynn.boolean.careers/exercises/api/random/mail")
-            .then((result) => {
-                this.currentEmail = result.data.response;
-            });
-    }
+        let howManyMail = 10
+        for (i = 0 ; i < howManyMail ; i++) {
+            axios
+                .get("https://flynn.boolean.careers/exercises/api/random/mail")
+                .then((result) => {
+                    this.currentEmail = result.data.response;
+                    this.emailContainer.push(result.data.response);  
+                });
+                console.log(this.emailContainer)
+        }
+    }   
 })
