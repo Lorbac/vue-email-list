@@ -9,26 +9,24 @@ Vue.config.devtools= true;
 var app = new Vue ({
     el: "#root",
     data:{
-        currentEmail: "",
         emailContainer: [],
         howManyMail: 10,
     },
     methods: {},
-    computed: {
-        arrayFilled: function() {
-            if (this.emailContainer.length == this.howManyMail) {
-                return this.emailContainer;
-            }
-        }
-    },
+    // computed: {
+    //     arrayFilled: function() {
+    //         if (this.emailContainer.length == this.howManyMail) {
+    //             return this.emailContainer;
+    //         }
+    //     }
+    // },
     mounted() {
         
         for (i = 0 ; i < this.howManyMail ; i++) {
             axios
             .get("https://flynn.boolean.careers/exercises/api/random/mail")
             .then((result) => {
-                this.currentEmail = result.data.response;
-                this.emailContainer.push(this.currentEmail);
+                this.emailContainer.push(result.data.response);
             });
         }
     },

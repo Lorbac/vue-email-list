@@ -10,7 +10,7 @@
 <body>
     
     <div id="root">
-        <h1 v-for="(email) in arrayFilled">{{ email }}</h1>
+        <h2 v-for="(email) in emailContainer" v-if="emailContainer.length == 10">{{ email }}</h2>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
